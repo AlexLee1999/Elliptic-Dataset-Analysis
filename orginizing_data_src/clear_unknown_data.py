@@ -4,9 +4,10 @@
 Usage : 
 - Input feature file and class file
 - Output feature file with only known nodes
+- Change file name if you need
 '''
 import numpy as np
-file_features = '../../elliptic_bitcoin_dataset/elliptic_txs_features.csv'
+file_features = '../../elliptic_bitcoin_dataset/clear_data_test.csv'
 file_class = '../../elliptic_bitcoin_dataset/elliptic_txs_classes.csv'
 clear_data_csv = "../../elliptic_bitcoin_dataset/clear_data.csv"
 def read_features_file():
@@ -32,6 +33,4 @@ if __name__ == "__main__":
     results_class = read_file_class()
     results_features = read_features_file()
     results_class = results_class[1::]
-    #r = results_class[:,1:]
-    #results_features = np.concatenate((r, results_features), axis=1)
     clear_unknown(results_features, results_class)

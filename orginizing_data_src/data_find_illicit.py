@@ -31,6 +31,11 @@ def read_file_class():
         FH = np.genfromtxt(f, delimiter=',', dtype='str')
     return FH
     
+def output_json(arr):
+    dict1 = {arr[i][0] : arr[i][1] for i in range(len(arr))}
+    with open(json_file, 'w') as fp:
+        json.dump(dict1, fp)
+    return dict1
 if __name__ == "__main__":
     results_features = read_features_file()
     results_class = read_file_class()
@@ -40,16 +45,17 @@ if __name__ == "__main__":
     r = results_class[:,1:]
     results_features = np.concatenate((r, results_features), axis=1)
     results_features = np.concatenate((results_features, np.zeros(np.shape(r))), axis=1)
-    dict1 = {results_class[i][0] : results_class[i][1] for i in range(len(results_class))}
+    results_features = np.concatenate((results_features, np.zeros(np.shape(r))), axis=1)
+    dict1 = output_json(results_class)
     dict2 = {results_class[i][0] : 0 for i in range(len(results_class))}
-    with open(json_file, 'w') as fp:
-        json.dump(dict1, fp)
-    
-
+    dict3 = {results_class[i][0] : 0 for i in range(len(results_class))}
     for i in range(len(results_edge)):
         if dict1[results_edge[i][1]] == '1':
             dict2[results_edge[i][1]] += 1
+        if dict1[results_edge[i][0]] == '1':
+            dict3[results_edge[i][1]] += 1
     for i in range(len(results_features)):
         results_features[i][-1] = dict2[results_features[i][1]]
+        results_features[i][-2] = dict3[results_features[i][1]]
     np.savetxt(output_csv, results_features, delimiter=",",fmt="%s")
     
