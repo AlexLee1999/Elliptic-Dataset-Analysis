@@ -2,6 +2,8 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegressionCV
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_recall_fscore_support
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import make_classification
 
 if __name__ == "__main__":
     label = pd.read_csv("./elliptic_bitcoin_dataset/elliptic_txs_classes.csv")
@@ -27,4 +29,9 @@ if __name__ == "__main__":
     clf = LogisticRegressionCV(cv=10, max_iter=2000, random_state=0).fit(X_train, Y_train)
     _predict = clf.predict(X_test)
     precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
-    print(f"F1 = {f1}")
+    print(f"logistic regression F1 = {f1[1]}")
+
+    clf = RandomForestClassifier(n_estimators=50,random_state=0).fit(X_train,Y_train)
+    _predict = clf.predict(X_test)
+    precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
+    print(f"random forest F1 = {f1[1]}")
