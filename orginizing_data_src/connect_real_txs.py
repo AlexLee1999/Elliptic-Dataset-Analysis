@@ -48,4 +48,10 @@ if __name__ == "__main__":
                     features[i][-1] = data['block_height']
                 if 'weight' in data:
                     features[i][-2] = data['weight']
+                if 'vin_sz' in data:
+                    features[i][-3] = data['vin_sz']
+                if 'vout_sz' in data:
+                    features[i][-4] = data['vout_sz']
+                if 'size' in data:
+                    features[i][-5] = data['size']
     np.savetxt(output_csv, features, delimiter=",",fmt="%s")
