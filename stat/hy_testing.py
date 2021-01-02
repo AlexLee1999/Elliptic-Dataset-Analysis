@@ -5,7 +5,7 @@ import statsmodels.api as sm
 from scipy import stats
 import matplotlib.pyplot as plt
 import seaborn as sns
-features = pd.read_csv('../elliptic_bitcoin_dataset/elliptic_txs_features.csv',header=None)
+features = pd.read_csv('../elliptic_bitcoin_dataset/elliptic_txs_features.csv',header=None, dtype='float64')
 classes = pd.read_csv('../elliptic_bitcoin_dataset/elliptic_txs_classes.csv')
 tx_features = ["tx_feat_"+str(i) for i in range(2,95)]
 agg_features = ["agg_feat_"+str(i) for i in range(1,73)]
@@ -26,7 +26,8 @@ sns.heatmap(X.corr())
 plt.show()
 '''
 print("Logistic Regression")
-log_reg = sm.GLM(Y, X, family=sm.families.Binomial()).fit_regularized(method='elastic_net', alpha=1.0, L1_wt=0.0)
+X2 = sm.add_constant(X)
+log_reg = sm.Logit(Y, X2).fit(method='bfgs')
 print(log_reg.summary())
 print(X.corr())
 '''
