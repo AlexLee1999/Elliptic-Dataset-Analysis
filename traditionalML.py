@@ -4,6 +4,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
+from sklearn.svm import SVC
+from sklearn.pipeline import make_pipeline
+>>> from sklearn.preprocessing import StandardScaler
 
 if __name__ == "__main__":
     label = pd.read_csv("./elliptic_bitcoin_dataset/elliptic_txs_classes.csv")
@@ -35,3 +38,8 @@ if __name__ == "__main__":
     _predict = clf.predict(X_test)
     precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
     print(f"random forest F1 = {f1[1]}")
+
+    clf = make_pipeline(StandardScaler(), SVC()).fit(X_train,Y_train)
+    _predict = clf.predict(X_test)
+    precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
+    print(f"SVM F1 = {f1[1]}")
