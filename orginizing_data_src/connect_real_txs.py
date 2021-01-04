@@ -35,7 +35,7 @@ def output_json(arr):
 if __name__ == "__main__":
     result = read_result_file()
     features = read_features_file()
-    a = np.zeros((203769,5))
+    a = np.zeros((203769,6))
     features = np.concatenate((features, a), 1)
     result = result[1:]
     
@@ -64,6 +64,13 @@ if __name__ == "__main__":
                     features[i][-5] = data['size']
                 else:
                     features[i][-5] = np.nan
+                if 'out' in data:
+                    su = 0
+                    for d in data['out']:
+                        su += d['value']
+                    features[i][-6] = su
+                else:
+                    features[i][-6] = np.nan
         else:
             features[i][-5] = np.nan
             features[i][-4] = np.nan

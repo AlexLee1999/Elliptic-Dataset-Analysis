@@ -7,6 +7,7 @@ from sklearn.datasets import make_classification
 from sklearn.svm import SVC
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import seaborn as sns
 
