@@ -6,7 +6,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
 from sklearn.svm import SVC
 from sklearn.pipeline import make_pipeline
->>> from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 if __name__ == "__main__":
     label = pd.read_csv("./elliptic_bitcoin_dataset/elliptic_txs_classes.csv")
@@ -29,17 +31,38 @@ if __name__ == "__main__":
     Y = data['class']
     Y.replace({"2": '0'}, inplace=True)
     X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size=0.2,random_state=0,shuffle=True)
-    clf = LogisticRegressionCV(cv=10, max_iter=2000, random_state=0).fit(X_train, Y_train)
-    _predict = clf.predict(X_test)
-    precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
-    print(f"logistic regression F1 = {f1[1]}")
+    # clf = LogisticRegressionCV(cv=10, max_iter=2000, random_state=0).fit(X_train, Y_train)
+    # _predict = clf.predict(X_test)
+    # precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
+    # print(f"logistic regression F1 = {f1[1]}")
 
-    clf = RandomForestClassifier(n_estimators=50,random_state=0).fit(X_train,Y_train)
-    _predict = clf.predict(X_test)
-    precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
-    print(f"random forest F1 = {f1[1]}")
+    # clf = RandomForestClassifier(n_estimators=50,random_state=0).fit(X_train,Y_train)
+    # _predict = clf.predict(X_test)
+    # precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
+    # print(f"random forest F1 = {f1[1]}")
 
-    clf = make_pipeline(StandardScaler(), SVC()).fit(X_train,Y_train)
-    _predict = clf.predict(X_test)
-    precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
-    print(f"SVM F1 = {f1[1]}")
+    # clf = make_pipeline(StandardScaler(), SVC()).fit(X_train,Y_train)
+    # _predict = clf.predict(X_test)
+    # precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
+    # print(f"SVM F1 = {f1[1]}")
+
+    pca = PCA(n_components=2).fit(X_train) 
+    pcaf = pca.transform(X_train)
+
+    trans = pd.DataFrame()
+    trans['x'] = pcaf[:,0]
+    trans['y'] = pcaf[:,1]
+    trans["illicit"] = X_test
+
+    plt.figure(figsize=(16,10))
+    sns.scatterplot(
+    x="x", y="y",
+    hue="illicit",
+    palette=sns.color_palette("hls",2),
+    data=trans,
+    legend="full",
+    alpha=0.3
+    )
+
+    # plt.show()
+    plt.savefig('illicit2D.png')
