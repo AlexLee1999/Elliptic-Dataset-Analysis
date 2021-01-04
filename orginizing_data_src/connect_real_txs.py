@@ -72,6 +72,7 @@ if __name__ == "__main__":
                 else:
                     features[i][-6] = np.nan
         else:
+            features[i][-6] = np.nan
             features[i][-5] = np.nan
             features[i][-4] = np.nan
             features[i][-3] = np.nan
