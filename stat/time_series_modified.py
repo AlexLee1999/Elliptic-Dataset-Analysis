@@ -28,3 +28,21 @@ for i in range(170):
     group = features2[f'{i}'].groupby(features2['time_step'])
     group.var().plot(ax=axes[1, 1], figsize=(20,10), color='red')
     axes[1, 1].set_title('Illicit variance')
+
+    featuresu = features[features['class'] == 'unknown']
+    group = featuresu[f'{i}'].groupby(featuresu['time_step'])
+    group.mean().plot(ax=axes[0, 2], figsize=(20,10))
+    axes[0, 2].set_title('Unknown mean')
+    group = featuresu[f'{i}'].groupby(featuresu['time_step'])
+    group.var().plot(ax=axes[1, 2], figsize=(20,10))
+    axes[1, 2].set_title('Unknown variance')
+
+
+    group = features[f'{i}'].groupby(features['time_step'])
+    group.mean().plot(ax=axes[0, 3], figsize=(20,10), color='black')
+    axes[0, 3].set_title('Total mean')
+    group = features[f'{i}'].groupby(features['time_step'])
+    group.var().plot(ax=axes[1, 3], figsize=(20,10), color='black')
+    axes[1, 3].set_title('Total variance')
+
+    plt.show()

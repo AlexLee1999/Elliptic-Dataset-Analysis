@@ -14,6 +14,11 @@ def prepare_data():
     features.columns = ["txId","time_step"] + feature
     features = pd.merge(features,classes,left_on="txId",right_on="txId",how='left')
     features['class'] = features['class'].apply(lambda x: '0' if x == "unknown" else x)
+    features.dropna(subset=['165'], inplace=True)
+    features.dropna(subset=['166'], inplace=True)
+    features.dropna(subset=['167'], inplace=True)
+    features.dropna(subset=['168'], inplace=True)
+    features.dropna(subset=['169'], inplace=True)
     data = features[(features['class']=='1') | (features['class']=='2')]
     X = data[feature]
     Y = data['class']
