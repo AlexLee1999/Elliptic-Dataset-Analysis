@@ -48,4 +48,4 @@ for i in range(165):
     group.var().plot(ax=axes[1, 3], figsize=(20,10), color='black')
     axes[1, 3].set_title('Total variance')
 
-    plt.show()
+    plt.savefig(f'../image/Feature{i}.png')
