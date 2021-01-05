@@ -35,7 +35,8 @@ def output_json(arr):
 if __name__ == "__main__":
     result = read_result_file()
     features = read_features_file()
-    a = np.zeros((203769,6))
+    a = np.empty((203769,6))
+    a[:] = np.NaN
     features = np.concatenate((features, a), 1)
     result = result[1:]
     
@@ -46,36 +47,19 @@ if __name__ == "__main__":
                 data = json.load(f)
                 if 'block_height' in data:
                     features[i][-1] = data['block_height']
-                else:
-                    features[i][-1] = np.nan
                 if 'weight' in data:
                     features[i][-2] = data['weight']
-                else:
-                    features[i][-2] = np.nan
                 if 'vin_sz' in data:
                     features[i][-3] = data['vin_sz']
-                else:
-                    features[i][-3] = np.nan
                 if 'vout_sz' in data:
                     features[i][-4] = data['vout_sz']
-                else:
-                    features[i][-4] = np.nan
                 if 'size' in data:
                     features[i][-5] = data['size']
-                else:
-                    features[i][-5] = np.nan
                 if 'out' in data:
                     su = 0
                     for d in data['out']:
                         su += d['value']
                     features[i][-6] = su
-                else:
-                    features[i][-6] = np.nan
-        else:
-            features[i][-6] = np.nan
-            features[i][-5] = np.nan
-            features[i][-4] = np.nan
-            features[i][-3] = np.nan
-            features[i][-2] = np.nan
-            features[i][-1] = np.nan
+
+    
     np.savetxt(output_csv, features, delimiter=",",fmt="%s")

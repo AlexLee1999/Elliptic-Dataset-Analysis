@@ -3,7 +3,6 @@
 '''
 Usage : 
 - Input feature file, class file, edge list
-- Output feature file with classes and output number of illicit nodes
 - Output Json file with key = id and value = type
 - Change file name if you need
 '''
@@ -15,6 +14,7 @@ file_features = '../../elliptic_bitcoin_dataset/elliptic_txs_features.csv'
 file_edge = '../../elliptic_bitcoin_dataset/elliptic_txs_edgelist.csv'
 file_class = '../../elliptic_bitcoin_dataset/elliptic_txs_classes.csv'
 json_file = '../../elliptic_bitcoin_dataset/class.json'
+graph_file = '../../elliptic_bitcoin_dataset/graph.json'
 output_csv = "../../elliptic_bitcoin_dataset/full_data.csv"
 
 
@@ -50,19 +50,16 @@ if __name__ == "__main__":
     results_edge = read_edge_file()
     results_class = results_class[1::]
     results_id = results_class[:, :-1]
-    r = results_class[:,1:]
-    results_features = np.concatenate((results_features, np.zeros(np.shape(r))), axis=1)
-    results_features = np.concatenate((results_features, np.zeros(np.shape(r))), axis=1)
+    r = results_class[:,0]
     dict1 = output_json(results_class)
-    dict2 = {results_class[i][0] : 0 for i in range(len(results_class))}
-    dict3 = {results_class[i][0] : 0 for i in range(len(results_class))}
+    dict2 = {}
+    for i in r:
+        dict2[f'{i}'] = {'in':[], 'out':[]}
     for i in range(len(results_edge)):
-        if dict1[results_edge[i][1]] == '1':
-            dict2[results_edge[i][1]] += 1
-        if dict1[results_edge[i][0]] == '1':
-            dict3[results_edge[i][1]] += 1
-    for i in range(len(results_features)):
-        results_features[i][-1] = dict2[results_features[i][0]]
-        results_features[i][-2] = dict3[results_features[i][0]]
-    np.savetxt(output_csv, results_features, delimiter=",",fmt="%s")
+        dict2[results_edge[i][0]]['out'].append(results_edge[i][1])
+        dict2[results_edge[i][1]]['in'].append(results_edge[i][0])
+    with open(graph_file, 'w') as fp:
+        json.dump(dict2, fp)
+        
+
     

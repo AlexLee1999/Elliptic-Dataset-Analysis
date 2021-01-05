@@ -53,7 +53,7 @@ if __name__ == "__main__":
     trans = pd.DataFrame()
     trans['x'] = pcaf[:,0]
     trans['y'] = pcaf[:,1]
-    trans["illicit"] = X_test
+    trans["illicit"] = Y_test
 
     plt.figure(figsize=(16,10))
     sns.scatterplot(
