@@ -1,3 +1,2 @@
- modified_ML/__pycache__/*
- raw_ML/__pycache__/*
- *.pyc
+*.pyc
+.DS_Store
