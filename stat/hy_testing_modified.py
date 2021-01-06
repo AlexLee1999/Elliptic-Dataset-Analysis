@@ -36,6 +36,15 @@ fi.close()
 fi = open('./corr_modified.txt', 'w')
 fi.write(f"{X.corr().to_string()}")
 fi.close()
-sns.heatmap(X.corr())
+cmap = sns.diverging_palette(0, 230, 90, 60, as_cmap=True)
+sns.heatmap(X.corr(), cmap=cmap, cbar={'shrink':0.4, 'ticks':[-1, -0.5, 0, 0.5, 1]})
 plt.savefig('../image/corr_modified.png')
+plt.close()
+
+cor = []
+for i in range(171):
+    x = X[f'{i}'].corr(Y)
+    cor.append(x)
+plt.plot(cor)
+plt.savefig("../image/corr_y_modified.png")
 
