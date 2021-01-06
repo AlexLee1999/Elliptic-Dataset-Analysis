@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 features = pd.read_csv('../../elliptic_bitcoin_dataset/full_data.csv',header=None, dtype='float64')
 classes = pd.read_csv('../../elliptic_bitcoin_dataset/elliptic_txs_classes.csv')
-feature = [str(i) for i in range(170)]
+feature = [str(i) for i in range(171)]
 features.columns = ["txId","time_step"] + feature
 features = pd.merge(features,classes,left_on="txId",right_on="txId",how='left')
 
@@ -19,6 +19,8 @@ features.dropna(subset=['166'], inplace=True)
 features.dropna(subset=['167'], inplace=True)
 features.dropna(subset=['168'], inplace=True)
 features.dropna(subset=['169'], inplace=True)
+features.dropna(subset=['170'], inplace=True)
+
 data = features[(features['class']=='1') | (features['class']=='2')]
 X = data[feature]
 Y = data['class']
@@ -28,6 +30,12 @@ est = sm.OLS(Y, X2)
 est2 = est.fit()
 print("Linear regression")
 print(est2.summary())
-
+fi = open('./linear_modified.txt', 'w')
+fi.write(f"{est2.summary()}")
+fi.close()
+fi = open('./corr_modified.txt', 'w')
+fi.write(f"{X.corr().to_string()}")
+fi.close()
 sns.heatmap(X.corr())
-plt.show()
+plt.savefig('../image/corr_modified.png')
+
