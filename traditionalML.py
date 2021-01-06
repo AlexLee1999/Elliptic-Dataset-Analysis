@@ -10,6 +10,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.feature_selection import RFE
 
 if __name__ == "__main__":
     label = pd.read_csv("./elliptic_bitcoin_dataset/elliptic_txs_classes.csv")
@@ -47,23 +48,28 @@ if __name__ == "__main__":
     # precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
     # print(f"SVM F1 = {f1[1]}")
 
-    pca = PCA(n_components=2).fit(X_train) 
-    pcaf = pca.transform(X_train)
+    selector = RFE(estimator=SVC(), n_features_to_select=90, step=1).fit(X_train,Y_train)
+    _predict = selector.predict(X_test)
+    precision,recall,f1,_ = precision_recall_fscore_support(Y_test,_predict)
+    print(f"SVM F1 = {f1[1]}")
 
-    trans = pd.DataFrame()
-    trans['x'] = pcaf[:,0]
-    trans['y'] = pcaf[:,1]
-    trans["illicit"] = Y_test
+    # pca = PCA(n_components=2).fit(X_train) 
+    # pcaf = pca.transform(X_train)
 
-    plt.figure(figsize=(16,10))
-    sns.scatterplot(
-    x="x", y="y",
-    hue="illicit",
-    palette=sns.color_palette("hls",2),
-    data=trans,
-    legend="full",
-    alpha=0.3
-    )
+    # trans = pd.DataFrame()
+    # trans['x'] = pcaf[:,0]
+    # trans['y'] = pcaf[:,1]
+    # trans["illicit"] = Y_test
+
+    # plt.figure(figsize=(16,10))
+    # sns.scatterplot(
+    # x="x", y="y",
+    # hue="illicit",
+    # palette=sns.color_palette("hls",2),
+    # data=trans,
+    # legend="full",
+    # alpha=0.3
+    # )
 
     # plt.show()
-    plt.savefig('illicit2D.png')
+    # plt.savefig('illicit2D.png')
