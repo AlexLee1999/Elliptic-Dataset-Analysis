@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -44,5 +46,5 @@ for i in range(170):
     group = features[f'{i}'].groupby(features['time_step'])
     group.var().plot(ax=axes[1, 3], figsize=(20,10), color='black')
     axes[1, 3].set_title('Total variance')
-
-    plt.show()
+    if i > 164:
+        plt.savefig(f'../image/Feature{i:03}.png')
