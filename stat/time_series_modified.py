@@ -6,12 +6,12 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 features = pd.read_csv('../../elliptic_bitcoin_dataset/full_data.csv',header=None, dtype='float64')
 classes = pd.read_csv('../../elliptic_bitcoin_dataset/elliptic_txs_classes.csv')
-feature = [str(i) for i in range(170)]
+feature = [str(i) for i in range(171)]
 features.columns = ["txId","time_step"] + feature
 features = pd.merge(features,classes,left_on="txId",right_on="txId",how='left')
 
 
-for i in range(170):
+for i in range(171):
     fig, axes = plt.subplots(2, 4)
     fig.suptitle(f'Feature {i}')
     features1 = features[features['class'] == '1']
