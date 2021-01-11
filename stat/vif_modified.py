@@ -27,4 +27,12 @@ Seri = pd.Series([variance_inflation_factor(X.values, i)
 fi = open('./vif_modified.txt', 'w')
 fi.write(f"{Seri.to_string()}")
 fi.close()
+plt.tick_params(
+    axis='x',
+    which='both',
+    bottom=False,
+    top=False,
+    labelbottom=False)
+Seri.plot.bar(logy=True)
+plt.savefig("../image/vif_modified.png")
 
