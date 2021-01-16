@@ -3,8 +3,8 @@
 Dep. Variable:                  class   R-squared:                       0.202
 Model:                            OLS   Adj. R-squared:                  0.199
 Method:                 Least Squares   F-statistic:                     70.00
-Date:                Sat, 09 Jan 2021   Prob (F-statistic):               0.00
-Time:                        15:35:03   Log-Likelihood:                -4434.6
+Date:                Sat, 16 Jan 2021   Prob (F-statistic):               0.00
+Time:                        20:38:22   Log-Likelihood:                -4434.6
 No. Observations:               46044   AIC:                             9203.
 Df Residuals:                   45877   BIC:                         1.066e+04
 Df Model:                         166                                         
@@ -179,19 +179,19 @@ x163         -12.9272     25.638     -0.504      0.614     -63.178      37.323
 x164           7.9460    164.906      0.048      0.962    -315.272     331.164
 x165          62.0076    189.687      0.327      0.744    -309.782     433.797
 x166          63.8007    306.972      0.208      0.835    -537.869     665.471
-x167       -1.542e-13   4.36e-13     -0.354      0.724   -1.01e-12    7.01e-13
-x168       -1.993e-15   2.23e-13     -0.009      0.993   -4.39e-13    4.35e-13
-x169        1.211e-13    2.9e-13      0.418      0.676   -4.47e-13    6.89e-13
-x170        -1.52e-16    5.3e-15     -0.029      0.977   -1.05e-14    1.02e-14
-x171        2.085e-13   6.06e-13      0.344      0.731    -9.8e-13     1.4e-12
+x167       -5.686e-15   7.06e-14     -0.081      0.936   -1.44e-13    1.33e-13
+x168        2.014e-13   5.23e-13      0.385      0.700   -8.24e-13    1.23e-12
+x169       -1.252e-13   2.63e-13     -0.476      0.634   -6.41e-13    3.91e-13
+x170         8.67e-14   4.45e-13      0.195      0.845   -7.85e-13    9.58e-13
+x171         3.18e-14   8.61e-14      0.369      0.712   -1.37e-13    2.01e-13
 ==============================================================================
 Omnibus:                    15955.143   Durbin-Watson:                   1.710
 Prob(Omnibus):                  0.000   Jarque-Bera (JB):            46612.801
 Skew:                           1.858   Prob(JB):                         0.00
-Kurtosis:                       6.238   Cond. No.                     1.28e+16
+Kurtosis:                       6.238   Cond. No.                     1.30e+16
 ==============================================================================
 
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The smallest eigenvalue is 5.53e-27. This might indicate that there are
+[2] The smallest eigenvalue is 5.42e-27. This might indicate that there are
 strong multicollinearity problems or that the design matrix is singular.

@@ -3,8 +3,8 @@
 Dep. Variable:                  class   R-squared:                       0.200
 Model:                            OLS   Adj. R-squared:                  0.197
 Method:                 Least Squares   F-statistic:                     71.24
-Date:                Wed, 06 Jan 2021   Prob (F-statistic):               0.00
-Time:                        19:55:43   Log-Likelihood:                -4307.6
+Date:                Sat, 16 Jan 2021   Prob (F-statistic):               0.00
+Time:                        20:38:37   Log-Likelihood:                -4307.6
 No. Observations:               46564   AIC:                             8943.
 Df Residuals:                   46400   BIC:                         1.038e+04
 Df Model:                         163                                         
@@ -182,10 +182,10 @@ const          0.1619      0.003     63.206      0.000       0.157       0.167
 Omnibus:                    16391.928   Durbin-Watson:                   1.709
 Prob(Omnibus):                  0.000   Jarque-Bera (JB):            48791.720
 Skew:                           1.881   Prob(JB):                         0.00
-Kurtosis:                       6.317   Cond. No.                     1.26e+16
+Kurtosis:                       6.317   Cond. No.                     1.02e+16
 ==============================================================================
 
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The smallest eigenvalue is 1.6e-26. This might indicate that there are
+[2] The smallest eigenvalue is 2.46e-26. This might indicate that there are
 strong multicollinearity problems or that the design matrix is singular.

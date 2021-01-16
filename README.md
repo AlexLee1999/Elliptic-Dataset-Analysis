@@ -13,3 +13,16 @@ File tree
 ├── NML_Final-antimoney-laundry
 └── txs
 ```
+
+Usage
+-----------------------------
+```bash
+pip install -r requirements.txt
+bash start.sh <options>
+```
+
+Requirements
+-----------------------------
+python >=3.6
+
+
