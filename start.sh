@@ -1,6 +1,5 @@
 #!/bin/bash
-echo "installing pip packages"
-pip install -r requirements.txt
+
 FILE=../elliptic_bitcoin_dataset/full_data.csv
 if [[ -f "$FILE" ]]; then
     echo "$FILE Exist"
@@ -31,31 +30,37 @@ case $1 in
         cd raw_ML/
         bash run_list.sh
         cd ..
+        echo "Finished $1"
     ;;
     -modified|-M)
         cd modified_ML/
         bash run_list.sh
         cd ..
+        echo "Finished $1"
     ;;
     -pca|-P)
         cd pca_ML/
         bash run_list.sh
         cd ..
+        echo "Finished $1"
     ;;
     pcaf|-PF)
         cd feature_select_pca_ML/
         bash run_list.sh
         cd ..
+        echo "Finished $1"
     ;;
     -corrf|-CF)
         cd feature_select_corr_ML/
         bash run_list.sh
         cd ..
+        echo "Finished $1"
     ;;
     -stat|-S)
         cd stat/
         bash run_list.sh
         cd ..
+        echo "Finished $1"
     ;;
     *)
         echo "Wrong Flag"
