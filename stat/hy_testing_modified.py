@@ -7,7 +7,7 @@ import statsmodels.api as sm
 from scipy import stats
 import matplotlib.pyplot as plt
 import seaborn as sns
-features = pd.read_csv('../../elliptic_bitcoin_dataset/full_data.csv',header=None, dtype='float64')
+features = pd.read_csv('../../elliptic_bitcoin_dataset/full_data.csv',header=None)
 classes = pd.read_csv('../../elliptic_bitcoin_dataset/elliptic_txs_classes.csv')
 feature = [str(i) for i in range(171)]
 features.columns = ["txId","time_step"] + feature

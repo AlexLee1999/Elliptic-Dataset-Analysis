@@ -18,8 +18,8 @@ if [[ -f "$CLASSFILE"  &&  -f "$FEATUREFILE"  &&  -f "$RESULTSFILE"  &&  -f "$ED
         -all|-A)
             cd raw_ML/
             ./run_list.sh
-            cd ../modified_ML
-            ./run_list.sh
+            ##cd ../modified_ML
+            ##./run_list.sh
             cd ../pca_ML
             ./run_list.sh
             cd ../feature_select_corr_ML

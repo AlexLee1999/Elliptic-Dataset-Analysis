@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from statsmodels.tools.tools import add_constant
-features = pd.read_csv('../../elliptic_bitcoin_dataset/elliptic_txs_features.csv',header=None, dtype='float64')
+features = pd.read_csv('../../elliptic_bitcoin_dataset/elliptic_txs_features.csv',header=None)
 classes = pd.read_csv('../../elliptic_bitcoin_dataset/elliptic_txs_classes.csv')
 feature = [str(i) for i in range(165)]
 features.columns = ["txId","time_step"] + feature
