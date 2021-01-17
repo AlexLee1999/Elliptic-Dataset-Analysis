@@ -25,18 +25,12 @@ def prepare_data(num):
     data = features[(features['class']=='1') | (features['class']=='2')]
     X = data[feature]
     Y = data['class']
-    Y = Y.apply(lambda x: 0 if x == '2' else 1 )
+    Y = Y.apply(lambda x: 0 if x == '2' else 1)
     std = StandardScaler()
     X = std.fit_transform(X)
-    pca = PCA(n_components = X.shape[1])
-    X = pca.fit_transform(X)
-    if num == 0:
-        cmap = sns.diverging_palette(0, 230, 90, 60, as_cmap=True)
-        sns.heatmap(pd.DataFrame(X).corr(), cmap=cmap, cbar={'shrink':0.4, 'ticks':[-1, -0.5, 0, 0.5, 1]})
-        plt.savefig('../image/corr_pca.png')
-        plt.close()
-        fi = open('./corr_pca.txt', 'w')
-        fi.write(f"{pd.DataFrame(X).corr().to_string()}")
-        fi.close()
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3,random_state=0,shuffle=False)
+    pca = PCA(n_components = X.shape[1] - 1)
+    pca.fit(X_train)
+    X_train = pca.transform(X_train)
+    X_test = pca.transform(X_test)
     return X_train, X_test, Y_train, Y_test

@@ -23,17 +23,17 @@ def prepare_data(num):
     data = features[(features['class']=='1') | (features['class']=='2')]
     X = data[feature]
     Y = data['class']
-    Y = Y.apply(lambda x: 0 if x == '2' else 1 )
-    
+    Y = Y.apply(lambda x: 0 if x == '2' else 1)
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3,random_state=0,shuffle=False)
     cor = []
     for i in range(171):
-        x = X[f'{i}'].corr(Y)
+        x = X_train[f'{i}'].corr(Y_train)
         cor.append(x)
-    corr = X.corr()
+    corr = X_train.corr()
     columns = np.full((corr.shape[0],), True, dtype=bool)
     for i in range(corr.shape[0]):
         for j in range(corr.shape[0]):
-            if corr.iloc[i,j] >= 0.99:
+            if corr.iloc[i,j] >= 0.35:
                 if columns[j] and abs(cor[j]) < abs(cor[i]):
                     if columns[i]:
                         columns[j] = False
@@ -49,12 +49,11 @@ def prepare_data(num):
         
 
     selected_columns = X.columns[columns]
-    
     X = X[selected_columns]
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3,random_state=0,shuffle=False)
     if num == 0:
         cmap = sns.diverging_palette(0, 230, 90, 60, as_cmap=True)
         sns.heatmap(X.corr(), cmap=cmap, cbar={'shrink':0.4, 'ticks':[-1, -0.5, 0, 0.5, 1]})
         plt.savefig('../image/corr_feature_select.png')
         plt.close()
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3,random_state=0,shuffle=False)
     return X_train, X_test, Y_train, Y_test

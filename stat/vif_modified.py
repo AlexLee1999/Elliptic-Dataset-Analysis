@@ -18,7 +18,7 @@ features['class'] = features['class'].apply(lambda x: '0' if x == "unknown" else
 data = features[(features['class']=='1') | (features['class']=='2')]
 X = data[feature]
 Y = data['class']
-Y = Y.apply(lambda x: 0 if x == '2' else 1 )
+Y = Y.apply(lambda x: 0 if x == '2' else 1)
 X = add_constant(X.dropna())
 Seri = pd.Series([variance_inflation_factor(X.values, i) 
                for i in range(X.shape[1])], 

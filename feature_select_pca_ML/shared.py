@@ -25,37 +25,15 @@ def prepare_data(num):
     data = features[(features['class']=='1') | (features['class']=='2')]
     X = data[feature]
     Y = data['class']
-    Y = Y.apply(lambda x: 0 if x == '2' else 1 )
+    Y = Y.apply(lambda x: 0 if x == '2' else 1)
     std = StandardScaler()
     X = std.fit_transform(X)
-    pca = PCA(n_components = X.shape[1])
-    X = pca.fit_transform(X)
-    if num == 0:
-        cmap = sns.diverging_palette(0, 230, 90, 60, as_cmap=True)
-        sns.heatmap(pd.DataFrame(X).corr(), cmap=cmap, cbar={'shrink':0.4, 'ticks':[-1, -0.5, 0, 0.5, 1]})
-        plt.savefig('../image/corr_pca.png')
-        plt.close()
-        fi = open('./corr_pca.txt', 'w')
-        fi.write(f"{pd.DataFrame(X).corr().to_string()}")
-        fi.close()
-        X2 = sm.add_constant(X)
-        est = sm.OLS(Y, X2)
-        est2 = est.fit()
-        print("Linear regression")
-        print(est2.summary())
-        fi = open('./linear_pca_raw.txt', 'w')
-        fi.write(f"{est2.summary()}")
-        fi.close()
-    del_lst = [7, 9, 14, 15, 16, 21, 41, 43, 53, 56, 64, 70, 74, 78, 79, 80, 83, 85, 87, 88, 89, 94, 96, 99, 100, 104, 105, 107, 108, 109, 122, 124, 129, 131, 132, 133, 134, 138, 139, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170]
-    X = np.delete(X, del_lst, axis=1)
-    if num == 0:
-        X2 = sm.add_constant(X)
-        est = sm.OLS(Y, X2)
-        est2 = est.fit()
-        print("Linear regression")
-        print(est2.summary())
-        fi = open('./linear_pca_modified.txt', 'w')
-        fi.write(f"{est2.summary()}")
-        fi.close()
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3,random_state=0,shuffle=False)
+    pca = PCA(n_components = X.shape[1] - 1)
+    pca.fit(X_train)
+    X_train = pca.transform(X_train)
+    X_test = pca.transform(X_test)
+    del_lst = [30, 37, 44, 49, 50, 51, 59, 60, 65, 66, 72, 75, 76, 77, 78, 85, 86, 87, 89, 90, 91, 92, 93, 96, 97, 99, 100, 101, 102, 104, 106, 107, 110, 112, 115, 119, 120, 122, 124, 125, 127, 128, 129, 131, 132, 134, 135, 136, 137, 138, 139, 140, 142, 143, 144, 145, 146, 147, 149, 150, 151, 152, 153, 154, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169]
+    X_train = np.delete(X_train, del_lst, axis=1)
+    X_test = np.delete(X_test, del_lst, axis=1)
     return X_train, X_test, Y_train, Y_test
