@@ -18,7 +18,7 @@ Usage
 -----------------------------
 ```bash
 pip install -r requirements.txt
-bash start.sh <options>
+./start.sh <options>
 ```
 * -all|-A : run all script
 * -raw|-R : run replication of the expriment
