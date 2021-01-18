@@ -4,7 +4,7 @@ Dep. Variable:                  class   R-squared:                       0.246
 Model:                            OLS   Adj. R-squared:                  0.242
 Method:                 Least Squares   F-statistic:                     64.79
 Date:                Mon, 18 Jan 2021   Prob (F-statistic):               0.00
-Time:                        00:17:25   Log-Likelihood:                -4100.7
+Time:                        11:35:19   Log-Likelihood:                -4100.7
 No. Observations:               32594   AIC:                             8529.
 Df Residuals:                   32430   BIC:                             9906.
 Df Model:                         163                                         

@@ -20,9 +20,7 @@ X = data[feature]
 Y = data['class']
 Y = Y.apply(lambda x: 0 if x == '2' else 1)
 X = add_constant(X.dropna())
-Seri = pd.Series([variance_inflation_factor(X.values, i) 
-               for i in range(X.shape[1])], 
-              index=X.columns)
+Seri = pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], index=X.columns)
 
 
 fi = open('./vif_raw.txt', 'w')
