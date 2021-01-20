@@ -10,6 +10,7 @@ File tree
 ```bash
 .
 ├── elliptic_bitcoin_dataset
+    └── full_data.csv
 ├── NML_Final-antimoney-laundry
 └── txs
 ```
