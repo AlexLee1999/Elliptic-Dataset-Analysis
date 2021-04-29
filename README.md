@@ -39,5 +39,10 @@ pip install -r requirements.txt
 Requirements
 -----------------------------
 - python >=3.6
+- numpy
+- pandas
+- scikit-learn
+- seaborn
+- statsmodels
 
 
