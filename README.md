@@ -3,10 +3,14 @@
 ## Table of content
 - [Introduction](#introduction)
 - [File tree](#file-tree)
+- [Learning Model](#learning-model)
 - [Usage](#usage)
 - [Requirements](#requirements)
 
 ## Introduction
+- Reproduce the experiment of the [paper](https://arxiv.org/abs/1908.02591)
+- Add new features and data analysis for the elliptic data set
+- Add new ML method to rerun the experiment
 
 ## File tree
 ```bash
@@ -20,6 +24,13 @@
 ├── NML_Final-antimoney-laundry
 └── txs
 ```
+## Learning Model
+- Linear Regression
+- Logistic Regression
+- MLP
+- SVM
+- Random Forest
+- Logistic Regression with Cross Validation
 
 ## Usage
 
