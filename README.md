@@ -1,12 +1,14 @@
-# NML Final -- Antimoney laundry
+# NML Final Bitcoin Antimoney laundry
 
-This is the repo for NML final
------------------------------
+## Table of content
+- [Introduction](#introduction)
+- [File tree](#file-tree)
+- [Usage](#usage)
+- [Requirements](#requirements)
 
-File tree
------------------------------
+## Introduction
 
-
+## File tree
 ```bash
 .
 ├── elliptic_bitcoin_dataset
@@ -19,8 +21,8 @@ File tree
 └── txs
 ```
 
-Usage
------------------------------
+## Usage
+
 ```bash
 pip install -r requirements.txt
 ./start.sh <options>
