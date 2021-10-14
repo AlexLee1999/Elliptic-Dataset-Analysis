@@ -2,6 +2,7 @@
 
 ## Table of content
 - [Introduction](#introduction)
+- [Dataset](#dataset)
 - [File tree](#file-tree)
 - [Learning Model](#learning-model)
 - [Usage](#usage)
@@ -11,6 +12,14 @@
 - Reproduce the experiment of the [paper](https://arxiv.org/abs/1908.02591)
 - Add new features and data analysis for the elliptic data set
 - Add new ML method to rerun the experiment
+- Deanonymized the transaction and add real bitcoin transaction data
+
+## Dataset
+- Elliptic Data Set  
+  https://www.kaggle.com/ellipticco/elliptic-data-set
+
+- Deanonymized Transactions  
+  https://www.kaggle.com/alexbenzik/deanonymized-995-pct-of-elliptic-transactions
 
 ## File tree
 ```bash
@@ -21,7 +30,7 @@
 |   ├── elliptic_txs_edgelist.csv
 |   ├── elliptic_txs_features.csv
 |   └── elliptic_txs_classes.csv
-├── NML_Final-antimoney-laundry
+├── NMLab-Final-Antimoney-Laundry
 └── txs
 ```
 ## Learning Model
@@ -47,13 +56,14 @@ python3 -m pip install -r requirements.txt
 * -stat | -S : run stat analysis
 
 
-Requirements
------------------------------
+## Requirements
+
 - python >=3.6
 - numpy
 - pandas
 - scikit-learn
 - seaborn
 - statsmodels
+
 
 
