@@ -1,4 +1,4 @@
-# NML Final Elliptic Dataset Analysis (Antimoney Laundry in Bitcoin)
+# Elliptic Dataset Analysis (Antimoney Laundry in Bitcoin)
 
 ## Table of content
 - [Introduction](#introduction)
